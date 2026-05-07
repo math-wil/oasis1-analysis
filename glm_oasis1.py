@@ -36,7 +36,7 @@ thickness_df = pd.DataFrame(thickness_data)
 # ── Données démographiques ────────────────────────────────────────────────────
 participants_df = pd.read_csv(PARTICIPANTS_TSV, sep="\t")
 participants_df["sub"] = participants_df["participant_id"].str.extract(r"sub-OASIS1(\d+)").apply(lambda x: f"sub-{x[0]}", axis=1)
-participants_df = participants_df[["sub", "sex", "age_bl"]].rename(columns={"age_bl": "age_bl": "age"})
+participants_df = participants_df[["sub", "sex", "age_bl"]].rename(columns={"age_bl": "age"})
 
 # ── Fusion ────────────────────────────────────────────────────────────────────
 df = motion_df.merge(thickness_df, on="sub", how="inner")
