@@ -10,7 +10,7 @@ Sauvegarde les résultats + sélectionne ~25 sujets stratifiés pour JDAC.
 Usage :
     python glm_aparc_oasis1.py \
         --scores       ~/Documents/oasis1_motion_scores.csv \
-        --fs_dir       /project/hippocampus/common/datasets/OASIS1_BIDS/derivatives/freesurfer \
+        --fs_dir /project/hippocampus/common/datasets/OASIS1_BIDS/processed_freesurfer7.4.1
         --participants /project/hippocampus/common/datasets/OASIS1_BIDS/raw_data_bids/participants.tsv \
         --bids_root    /project/hippocampus/common/datasets/OASIS1_BIDS/raw_data_bids \
         --out_dir      ~/Documents/oasis1_results
@@ -206,23 +206,39 @@ def main():
         scores.columns = ["sub", "motion"]
     scores = scores[["sub", "motion"]].dropna()
     print(f"  {len(scores)} scores chargés")
-
+    
     # ---- Démographie ----
     print("Chargement des données démographiques...")
     demo = pd.read_csv(args.participants, sep="\t")
-    demo = demo.rename(columns={"participant_id": "sub"})
-
+    
+    # Convertir les IDs participants.tsv vers le format des dossiers FreeSurfer / Agitation
+    # Exemple : sub-OASIS10001 -> sub-0001
+    if "participant_id" not in demo.columns:
+        raise ValueError("Colonne participant_id introuvable dans participants.tsv")
+    
+    demo["sub"] = (
+        demo["participant_id"]
+        .astype(str)
+        .str.extract(r"sub-OASIS1(\d+)", expand=False)
+        .apply(lambda x: f"sub-{x}" if pd.notna(x) else np.nan)
+    )
+    
+    if demo["sub"].isna().any():
+        print("Attention : certains participant_id n'ont pas pu être convertis.")
+    
     sex_col = next((c for c in demo.columns if c.lower() in ["sex", "gender"]), None)
     if sex_col is None:
         raise ValueError("Colonne sex/gender introuvable dans participants.tsv")
-    demo["sex_num"] = (demo[sex_col].str.upper() == "M").astype(int)
-    demo = demo.rename(columns={sex_col: "sex"})
-
+    
+    demo["sex"] = demo[sex_col]
+    demo["sex_num"] = (demo["sex"].astype(str).str.upper() == "M").astype(int)
+    
     age_col = next((c for c in demo.columns if "age" in c.lower()), None)
     if age_col is None:
         raise ValueError("Colonne age introuvable dans participants.tsv")
-    demo = demo.rename(columns={age_col: "age"})
-
+    
+    demo["age"] = demo[age_col]
+    
     merged = scores.merge(demo[["sub", "age", "sex", "sex_num"]], on="sub", how="inner")
     print(f"  {len(merged)} sujets après fusion scores + démographie")
 
