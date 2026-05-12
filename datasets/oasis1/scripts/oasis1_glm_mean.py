@@ -1,11 +1,13 @@
 import pandas as pd
 import statsmodels.formula.api as smf
 import os
+from pathlib import Path
 
 # ── Chemins ───────────────────────────────────────────────────────────────────
-BASE_DIR = "/home/av62870@ens.ad.etsmtl.ca/Documents/motion-analysis/datasets/oasis1"
-MOTION_CSV = os.path.join(BASE_DIR, "oasis1_motion_scores.csv")
-FREESURFER_DIR = "/project/hippocampus/common/datasets/OASIS1_BIDS/processed_freesurfer7.4.1"
+BASE_DIR     = Path("/home/av62870@ens.ad.etsmtl.ca/Documents/motion-analysis/datasets/oasis1")
+MOTION_CSV   = BASE_DIR / "results_raw" / "oasis1_scores_raw.csv"
+RESULTS_DIR  = BASE_DIR / "results_raw"
+FREESURFER_DIR   = "/project/hippocampus/common/datasets/OASIS1_BIDS/processed_freesurfer7.4.1"
 PARTICIPANTS_TSV = "/project/hippocampus/common/datasets/OASIS1_BIDS/raw_data_bids/participants.tsv"
 
 # ── Scores de mouvement ───────────────────────────────────────────────────────
@@ -35,7 +37,9 @@ thickness_df = pd.DataFrame(thickness_data)
 
 # ── Données démographiques ────────────────────────────────────────────────────
 participants_df = pd.read_csv(PARTICIPANTS_TSV, sep="\t")
-participants_df["sub"] = participants_df["participant_id"].str.extract(r"sub-OASIS1(\d+)").apply(lambda x: f"sub-{x[0]}", axis=1)
+participants_df["sub"] = participants_df["participant_id"].str.extract(r"sub-OASIS1(\d+)").apply(
+    lambda x: f"sub-{x[0]}", axis=1
+)
 participants_df = participants_df[["sub", "sex", "age_bl"]].rename(columns={"age_bl": "age"})
 
 # ── Fusion ────────────────────────────────────────────────────────────────────
@@ -48,7 +52,7 @@ est = smf.glm("lh_mean_thickness ~ age + sex + motion", data=df)
 result = est.fit()
 print(result.summary())
 
-# Sauvegarder le résumé
-with open(os.path.join(BASE_DIR, "glm_results.txt"), "w") as f:
+out_file = RESULTS_DIR / "oasis1_glm_mean.txt"
+with open(out_file, "w") as f:
     f.write(result.summary().as_text())
-print(f"Résultats sauvegardés dans {BASE_DIR}/glm_results.txt")
+print(f"Résultats sauvegardés dans {out_file}")
