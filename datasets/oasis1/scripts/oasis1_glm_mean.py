@@ -3,7 +3,7 @@ import statsmodels.formula.api as smf
 import os
 
 # ── Chemins ───────────────────────────────────────────────────────────────────
-BASE_DIR = "/home/av62870@ens.ad.etsmtl.ca/Documents/oasis1-analysis"
+BASE_DIR = "/home/av62870@ens.ad.etsmtl.ca/Documents/motion-analysis/datasets/oasis1"
 MOTION_CSV = os.path.join(BASE_DIR, "oasis1_motion_scores.csv")
 FREESURFER_DIR = "/project/hippocampus/common/datasets/OASIS1_BIDS/processed_freesurfer7.4.1"
 PARTICIPANTS_TSV = "/project/hippocampus/common/datasets/OASIS1_BIDS/raw_data_bids/participants.tsv"
