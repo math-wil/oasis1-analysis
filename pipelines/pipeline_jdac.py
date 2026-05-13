@@ -33,7 +33,7 @@ from monai.transforms import Compose
 from monai.utils import set_determinism
 
 # Doit être lancé depuis ~/Documents/jdac/ pour que l'import fonctionne
-sys.path.insert(0, str(Path(__file__).parent))
+sys.path.insert(0, str(Path.home() / "Documents/jdac"))
 from models import AntiART_UNet, Denoiser_CondUNet
 
 torch.manual_seed(0)
