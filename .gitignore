@@ -8,3 +8,23 @@ datasets/ds001907/jdac_corrected/
 datasets/ds004332/jdac_corrected_test/
 *.nii
 *.nii.gz
+
+# Neuroimaging volumes / heavy data
+*.nii
+*.nii.gz
+*.mgz
+
+# Model weights
+*.pth
+*.pt
+*.ckpt
+PretrainedModels/
+
+# Temporary / generated dataset folders
+tmp_bids/
+jdac_corrected/
+jdac_corrected_mni/
+datasets/*/jdac_corrected/
+datasets/*/raw/
+datasets/*/preprocessed/
+datasets/*/outputs_nifti/

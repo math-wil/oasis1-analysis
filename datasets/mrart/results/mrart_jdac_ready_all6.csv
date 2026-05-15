@@ -1,0 +1,13 @@
+sub,motion,stratum,t1w_path
+sub-000103_headmotion1,1.0,headmotion1,/home/av62870@ens.ad.etsmtl.ca/Documents/Datasets/MRART_jdac_ready/sub-000103/anat/sub-000103_acq-headmotion1_T1w_brain_norm01.nii.gz
+sub-000103_headmotion2,2.0,headmotion2,/home/av62870@ens.ad.etsmtl.ca/Documents/Datasets/MRART_jdac_ready/sub-000103/anat/sub-000103_acq-headmotion2_T1w_brain_norm01.nii.gz
+sub-000148_headmotion1,1.0,headmotion1,/home/av62870@ens.ad.etsmtl.ca/Documents/Datasets/MRART_jdac_ready/sub-000148/anat/sub-000148_acq-headmotion1_T1w_brain_norm01.nii.gz
+sub-000148_headmotion2,2.0,headmotion2,/home/av62870@ens.ad.etsmtl.ca/Documents/Datasets/MRART_jdac_ready/sub-000148/anat/sub-000148_acq-headmotion2_T1w_brain_norm01.nii.gz
+sub-000149_headmotion1,1.0,headmotion1,/home/av62870@ens.ad.etsmtl.ca/Documents/Datasets/MRART_jdac_ready/sub-000149/anat/sub-000149_acq-headmotion1_T1w_brain_norm01.nii.gz
+sub-000149_headmotion2,2.0,headmotion2,/home/av62870@ens.ad.etsmtl.ca/Documents/Datasets/MRART_jdac_ready/sub-000149/anat/sub-000149_acq-headmotion2_T1w_brain_norm01.nii.gz
+sub-000159_headmotion1,1.0,headmotion1,/home/av62870@ens.ad.etsmtl.ca/Documents/Datasets/MRART_jdac_ready/sub-000159/anat/sub-000159_acq-headmotion1_T1w_brain_norm01.nii.gz
+sub-000159_headmotion2,2.0,headmotion2,/home/av62870@ens.ad.etsmtl.ca/Documents/Datasets/MRART_jdac_ready/sub-000159/anat/sub-000159_acq-headmotion2_T1w_brain_norm01.nii.gz
+sub-000175_headmotion1,1.0,headmotion1,/home/av62870@ens.ad.etsmtl.ca/Documents/Datasets/MRART_jdac_ready/sub-000175/anat/sub-000175_acq-headmotion1_T1w_brain_norm01.nii.gz
+sub-000175_headmotion2,2.0,headmotion2,/home/av62870@ens.ad.etsmtl.ca/Documents/Datasets/MRART_jdac_ready/sub-000175/anat/sub-000175_acq-headmotion2_T1w_brain_norm01.nii.gz
+sub-862915_headmotion1,1.0,headmotion1,/home/av62870@ens.ad.etsmtl.ca/Documents/Datasets/MRART_jdac_ready/sub-862915/anat/sub-862915_acq-headmotion1_T1w_brain_norm01.nii.gz
+sub-862915_headmotion2,2.0,headmotion2,/home/av62870@ens.ad.etsmtl.ca/Documents/Datasets/MRART_jdac_ready/sub-862915/anat/sub-862915_acq-headmotion2_T1w_brain_norm01.nii.gz
